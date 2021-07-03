@@ -1,3 +1,5 @@
+package service;
+
 import dto.ColumnMetadata;
 import lombok.extern.slf4j.Slf4j;
 
@@ -8,16 +10,6 @@ import java.util.*;
 
 @Slf4j
 public class DbMetadata {
-
-    public List<String> getListOfTables(Connection connection) throws SQLException {
-        var databaseMetaData = connection.getMetaData();
-        List<String> listOfTables = new ArrayList<String>();
-        ResultSet rs = databaseMetaData.getTables(null, "C##ALBERT", "%", new String[]{"TABLE"});
-        while (rs.next()) {
-            listOfTables.add(rs.getString("TABLE_NAME"));
-        }
-        return listOfTables;
-    }
 
     public Map<String, LinkedList<ColumnMetadata>> getMetadata(Connection connection) throws SQLException {
         Map<String, LinkedList<ColumnMetadata>> metadata = new LinkedHashMap<>();
@@ -37,6 +29,16 @@ public class DbMetadata {
         }
         metadata.put(previousTableName, new LinkedList<>(columnMetadataList));
         return metadata;
+    }
+
+    public List<String> getListOfTables(Connection connection) throws SQLException {
+        var databaseMetaData = connection.getMetaData();
+        List<String> listOfTables = new ArrayList<String>();
+        ResultSet rs = databaseMetaData.getTables(null, "C##ALBERT", "%", new String[]{"TABLE"});
+        while (rs.next()) {
+            listOfTables.add(rs.getString("TABLE_NAME"));
+        }
+        return listOfTables;
     }
 
     private ColumnMetadata getColumnMetadata(ResultSet rs) {
