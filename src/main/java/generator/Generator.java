@@ -3,9 +3,11 @@ package generator;
 import config.DbCon;
 import config.DirectoryCreator;
 import dto.ColumnMetadata;
+import generator.content.ServiceGenerator;
 import lombok.extern.slf4j.Slf4j;
-import service.DbMetadata;
+import service.MetadataService;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.Map;
@@ -18,13 +20,16 @@ public class Generator {
     public void generate() {
         directoryCreator.generateRESTWebServicesStructure();
         fileGenerator.generateRESTWebServicesFiles();
+        ServiceGenerator serviceGenerator = new ServiceGenerator();
+        serviceGenerator.generateServiceTemplate();
+
     }
 
     private Map<String, LinkedList<ColumnMetadata>> getMetadata() {
         var connection = DbCon.connection();
         try {
-            var dbMetadata = new DbMetadata();
-            return dbMetadata.getMetadata(connection);
+            var metadataService = new MetadataService();
+            return metadataService.getMetadata(connection);
         } catch (SQLException sqlException) {
             log.error(sqlException.getMessage());
             throw new RuntimeException();

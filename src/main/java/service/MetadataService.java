@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 @Slf4j
-public class DbMetadata {
+public class MetadataService {
 
     public Map<String, LinkedList<ColumnMetadata>> getMetadata(Connection connection) throws SQLException {
         Map<String, LinkedList<ColumnMetadata>> metadata = new LinkedHashMap<>();
@@ -33,7 +33,7 @@ public class DbMetadata {
 
     public List<String> getListOfTables(Connection connection) throws SQLException {
         var databaseMetaData = connection.getMetaData();
-        List<String> listOfTables = new ArrayList<String>();
+        List<String> listOfTables = new ArrayList<>();
         ResultSet rs = databaseMetaData.getTables(null, "C##ALBERT", "%", new String[]{"TABLE"});
         while (rs.next()) {
             listOfTables.add(rs.getString("TABLE_NAME"));

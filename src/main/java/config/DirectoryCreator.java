@@ -20,7 +20,7 @@ public class DirectoryCreator {
 
     private void createProjectDirectory(String path) {
         try {
-            FileUtils.forceMkdir(new File(Path.PROJECT + path));
+            FileUtils.forceMkdir(new File(path));
         } catch (IOException e) {
             log.error(e.getMessage());
             throw new RuntimeException();
