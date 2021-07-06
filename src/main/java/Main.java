@@ -1,15 +1,13 @@
-import config.DbCon;
+import config.DbConfig;
 import generator.Generator;
 import lombok.extern.slf4j.Slf4j;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
 @Slf4j
 public class Main {
-    public static final Connection connection = DbCon.connection();
+    public static final Connection connection = DbConfig.connection();
     public static void main(String[] args) throws SQLException {
         var generator = new Generator();
         generator.generate();

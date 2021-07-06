@@ -3,7 +3,6 @@ package dto;
 import lombok.Builder;
 import lombok.Value;
 
-
 @Value
 @Builder
 public class ColumnMetadata {
@@ -11,5 +10,4 @@ public class ColumnMetadata {
     String type;
     String isNullable;
     String isAutoincrement;
-    oracle.sql.BLOB tmp;
 }
