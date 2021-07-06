@@ -1,13 +1,14 @@
 package generator;
 
-import config.DbCon;
+import config.DbConfig;
 import config.DirectoryCreator;
 import dto.ColumnMetadata;
+import dto.DbParameters;
+import generator.content.ConfigGenerator;
 import generator.content.ServiceGenerator;
 import lombok.extern.slf4j.Slf4j;
 import service.MetadataService;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.Map;
@@ -16,17 +17,23 @@ import java.util.Map;
 public class Generator {
     private DirectoryCreator directoryCreator = new DirectoryCreator();
     private FileGenerator fileGenerator = new FileGenerator(getMetadata());
+    private ServiceGenerator serviceGenerator = new ServiceGenerator();
+    private ConfigGenerator configGenerator = new ConfigGenerator();
 
     public void generate() {
         directoryCreator.generateRESTWebServicesStructure();
         fileGenerator.generateRESTWebServicesFiles();
-        ServiceGenerator serviceGenerator = new ServiceGenerator();
         serviceGenerator.generateServiceTemplate();
+        configGenerator.generateConfig(DbParameters.builder()
+                .driver("oracle.jdbc.driver.OracleDriver")
+                .url("jdbc:oracle:thin:@localhost:1521:orcl")
+                .user("c##albert")
+                .password("albert").build());
 
     }
 
     private Map<String, LinkedList<ColumnMetadata>> getMetadata() {
-        var connection = DbCon.connection();
+        var connection = DbConfig.connection();
         try {
             var metadataService = new MetadataService();
             return metadataService.getMetadata(connection);
