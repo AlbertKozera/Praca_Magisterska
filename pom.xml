@@ -23,7 +23,7 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.20</version>
-            <scope>compile</scope>
+            <scope>compile</scope> <!-- javapoet requires lombok to be compiled -->
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
