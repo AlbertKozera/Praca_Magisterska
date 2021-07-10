@@ -7,7 +7,9 @@ import lombok.Value;
 @Builder
 public class ColumnMetadata {
     String name;
-    String type;
+    String databaseType;
+    String javaType;
+    String javaTypePackage;
     String isNullable;
     String isAutoincrement;
 }

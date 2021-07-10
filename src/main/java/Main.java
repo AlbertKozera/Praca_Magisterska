@@ -12,6 +12,7 @@ public class Main {
         var generator = new Generator();
         generator.generate();
 
+
 /*        var query = "SELECT * FROM TMP";
         var statement = connection.createStatement();
         ResultSet rs = statement.executeQuery(query);

@@ -1,5 +1,6 @@
 package service;
 
+import config.JdbcClassConverter;
 import dto.ColumnMetadata;
 import lombok.extern.slf4j.Slf4j;
 
@@ -17,7 +18,6 @@ public class MetadataService {
         String previousTableName = null;
         var databaseMetaData = connection.getMetaData();
         ResultSet rs = databaseMetaData.getColumns(null, "C##ALBERT", null, null);
-
         while (rs.next()) {
             var tableName = getProperty(rs, "TABLE_NAME");
             if(!tableName.equals(previousTableName) && previousTableName != null) {
@@ -44,7 +44,9 @@ public class MetadataService {
     private ColumnMetadata getColumnMetadata(ResultSet rs) {
         return ColumnMetadata.builder()
                 .name(getProperty(rs, "COLUMN_NAME"))
-                .type(getProperty(rs, "TYPE_NAME"))
+                .databaseType(getProperty(rs, "TYPE_NAME"))
+                .javaType(JdbcClassConverter.getName(getProperty(rs, "DATA_TYPE")))
+                .javaTypePackage(JdbcClassConverter.getPackageName(getProperty(rs, "DATA_TYPE")))
                 .isNullable(getProperty(rs, "IS_NULLABLE"))
                 .isAutoincrement(getProperty(rs, "IS_AUTOINCREMENT")).build();
     }

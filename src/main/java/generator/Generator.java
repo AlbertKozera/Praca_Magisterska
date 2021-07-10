@@ -5,6 +5,7 @@ import config.DirectoryCreator;
 import dto.ColumnMetadata;
 import dto.DbParameters;
 import generator.content.ConfigGenerator;
+import generator.content.DtoGenerator;
 import generator.content.ServiceGenerator;
 import lombok.extern.slf4j.Slf4j;
 import service.MetadataService;
@@ -19,6 +20,7 @@ public class Generator {
     private FileGenerator fileGenerator = new FileGenerator(getMetadata());
     private ServiceGenerator serviceGenerator = new ServiceGenerator();
     private ConfigGenerator configGenerator = new ConfigGenerator();
+    private DtoGenerator dtoGenerator = new DtoGenerator(getMetadata());
 
     public void generate() {
         directoryCreator.generateRESTWebServicesStructure();
@@ -29,6 +31,7 @@ public class Generator {
                 .url("jdbc:oracle:thin:@localhost:1521:orcl")
                 .user("c##albert")
                 .password("albert").build());
+        dtoGenerator.generateDto();
 
     }
 
