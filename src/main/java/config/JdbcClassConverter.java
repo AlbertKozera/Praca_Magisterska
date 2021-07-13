@@ -1,5 +1,6 @@
 package config;
 
+import java.math.BigDecimal;
 import java.sql.Types;
 
 public class JdbcClassConverter {
@@ -15,7 +16,7 @@ public class JdbcClassConverter {
 
             case Types.NUMERIC:
             case Types.DECIMAL:
-                result = java.math.BigDecimal.class;
+                result = BigDecimal.class;
                 break;
 
             case Types.BIT:

@@ -1,12 +1,14 @@
 package generator;
 
 import config.DbConfig;
-import config.DirectoryCreator;
+import generator.structure.DirectoryCreator;
+import generator.structure.FileGenerator;
 import dto.ColumnMetadata;
 import dto.DbParameters;
 import generator.content.ConfigGenerator;
 import generator.content.DtoGenerator;
 import generator.content.ServiceGenerator;
+import generator.content.ServiceImplGenerator;
 import lombok.extern.slf4j.Slf4j;
 import service.MetadataService;
 
@@ -19,13 +21,15 @@ public class Generator {
     private DirectoryCreator directoryCreator = new DirectoryCreator();
     private FileGenerator fileGenerator = new FileGenerator(getMetadata());
     private ServiceGenerator serviceGenerator = new ServiceGenerator();
+    private ServiceImplGenerator serviceImplGenerator = new ServiceImplGenerator(getMetadata());
     private ConfigGenerator configGenerator = new ConfigGenerator();
     private DtoGenerator dtoGenerator = new DtoGenerator(getMetadata());
 
     public void generate() {
         directoryCreator.generateRESTWebServicesStructure();
         fileGenerator.generateRESTWebServicesFiles();
-        serviceGenerator.generateServiceTemplate();
+        serviceGenerator.generateService();
+        serviceImplGenerator.generateServiceImpl();
         configGenerator.generateConfig(DbParameters.builder()
                 .driver("oracle.jdbc.driver.OracleDriver")
                 .url("jdbc:oracle:thin:@localhost:1521:orcl")

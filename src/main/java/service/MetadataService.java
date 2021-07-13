@@ -5,6 +5,7 @@ import dto.ColumnMetadata;
 import lombok.extern.slf4j.Slf4j;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
@@ -24,31 +25,31 @@ public class MetadataService {
                 metadata.put(previousTableName, new LinkedList<>(columnMetadataList));
                 columnMetadataList.clear();
             }
-            columnMetadataList.add(getColumnMetadata(rs));
+            columnMetadataList.add(getColumnMetadata(rs, getPrimaryKeyColumnForTable(databaseMetaData, tableName)));
             previousTableName = getProperty(rs, "TABLE_NAME");
         }
         metadata.put(previousTableName, new LinkedList<>(columnMetadataList));
         return metadata;
     }
 
-    public List<String> getListOfTables(Connection connection) throws SQLException {
-        var databaseMetaData = connection.getMetaData();
-        List<String> listOfTables = new ArrayList<>();
-        ResultSet rs = databaseMetaData.getTables(null, "C##ALBERT", "%", new String[]{"TABLE"});
-        while (rs.next()) {
-            listOfTables.add(rs.getString("TABLE_NAME"));
-        }
-        return listOfTables;
-    }
-
-    private ColumnMetadata getColumnMetadata(ResultSet rs) {
-        return ColumnMetadata.builder()
-                .name(getProperty(rs, "COLUMN_NAME"))
+    private ColumnMetadata getColumnMetadata(ResultSet rs, String primaryKeyColumn) {
+        String columnName = getProperty(rs, "COLUMN_NAME");
+        var columnMetadataBuilder = ColumnMetadata.builder()
+                .name(columnName)
                 .databaseType(getProperty(rs, "TYPE_NAME"))
                 .javaType(JdbcClassConverter.getName(getProperty(rs, "DATA_TYPE")))
                 .javaTypePackage(JdbcClassConverter.getPackageName(getProperty(rs, "DATA_TYPE")))
                 .isNullable(getProperty(rs, "IS_NULLABLE"))
-                .isAutoincrement(getProperty(rs, "IS_AUTOINCREMENT")).build();
+                .isAutoincrement(getProperty(rs, "IS_AUTOINCREMENT"));
+        if(columnName.equals(primaryKeyColumn))
+            columnMetadataBuilder.isPrimaryKey(true);
+        return columnMetadataBuilder.build();
+    }
+
+    private String getPrimaryKeyColumnForTable(DatabaseMetaData databaseMetaData, String tableName) throws SQLException {
+        ResultSet rs = databaseMetaData.getPrimaryKeys(null, "C##ALBERT", tableName);
+        rs.next();
+        return getProperty(rs, "COLUMN_NAME");
     }
 
     private String getProperty(ResultSet rs, String property) {

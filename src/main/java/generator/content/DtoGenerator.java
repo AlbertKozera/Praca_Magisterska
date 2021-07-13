@@ -9,12 +9,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 import javax.lang.model.element.Modifier;
 import java.util.*;
 
-@Slf4j
 public class DtoGenerator {
     private final Map<String, LinkedList<ColumnMetadata>> metadata;
 
@@ -36,17 +34,10 @@ public class DtoGenerator {
 
     private Iterable<FieldSpec> generateFields(List<ColumnMetadata> columnMetadataList) {
         List<FieldSpec> fieldsList = new ArrayList<>();
-        columnMetadataList.forEach(c -> {
-            try {
-                fieldsList.add(FieldSpec
-                        .builder(Class.forName(c.getJavaTypePackage()), c.getName())
-                        .addModifiers(Modifier.PRIVATE)
-                        .build());
-            } catch (ClassNotFoundException e) {
-                log.error(e.getMessage());
-                throw new RuntimeException();
-            }
-        });
+        columnMetadataList.forEach(c -> fieldsList.add(FieldSpec
+                .builder(Common.getTypeClassByName(c.getJavaTypePackage()), c.getName())
+                .addModifiers(Modifier.PRIVATE)
+                .build()));
         return fieldsList;
     }
 }
