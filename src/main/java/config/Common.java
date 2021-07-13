@@ -25,4 +25,15 @@ public class Common {
     public static String capitalizeFirstLetter(String str) {
         return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
     }
+
+    public static Class<?> getTypeClassByName(String name) {
+        try {
+            return Class.forName(name);
+        } catch (ClassNotFoundException e) {
+            log.error(e.getMessage());
+            throw new RuntimeException();
+        }
+    }
 }
+
+

@@ -1,4 +1,4 @@
-package generator;
+package generator.structure;
 
 import config.Path;
 import dto.ColumnMetadata;

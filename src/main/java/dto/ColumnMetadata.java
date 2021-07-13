@@ -12,4 +12,5 @@ public class ColumnMetadata {
     String javaTypePackage;
     String isNullable;
     String isAutoincrement;
+    boolean isPrimaryKey;
 }
