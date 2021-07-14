@@ -35,7 +35,7 @@ public class DtoGenerator {
     private Iterable<FieldSpec> generateFields(List<ColumnMetadata> columnMetadataList) {
         List<FieldSpec> fieldsList = new ArrayList<>();
         columnMetadataList.forEach(c -> fieldsList.add(FieldSpec
-                .builder(Common.getTypeClassByName(c.getJavaTypePackage()), c.getName())
+                .builder(Common.getClassByName(c.getJavaTypePackage()), c.getName())
                 .addModifiers(Modifier.PRIVATE)
                 .build()));
         return fieldsList;
