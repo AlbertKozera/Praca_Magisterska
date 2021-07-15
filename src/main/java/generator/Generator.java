@@ -17,25 +17,24 @@ import java.util.Map;
 public class Generator {
     private DirectoryCreator directoryCreator = new DirectoryCreator();
     private FileGenerator fileGenerator = new FileGenerator(getMetadata());
-    private ServiceGenerator serviceGenerator = new ServiceGenerator();
-    private ServiceImplGenerator serviceImplGenerator = new ServiceImplGenerator(getMetadata());
     private ConfigGenerator configGenerator = new ConfigGenerator();
     private DtoGenerator dtoGenerator = new DtoGenerator(getMetadata());
+    private ServiceGenerator serviceGenerator = new ServiceGenerator();
+    private ServiceImplGenerator serviceImplGenerator = new ServiceImplGenerator(getMetadata());
     private ControllerGenerator controllerGenerator = new ControllerGenerator(getMetadata());
 
     public void generate() {
-        directoryCreator.generateRESTWebServicesStructure();
-        fileGenerator.generateRESTWebServicesFiles();
-        serviceGenerator.generateService();
-        serviceImplGenerator.generateServiceImpl();
+        directoryCreator.generateStructure();
+        fileGenerator.generateFiles();
         configGenerator.generateConfig(DbParameters.builder()
                 .driver("oracle.jdbc.driver.OracleDriver")
                 .url("jdbc:oracle:thin:@localhost:1521:orcl")
                 .user("c##albert")
                 .password("albert").build());
         dtoGenerator.generateDto();
+        serviceGenerator.generateService();
+        serviceImplGenerator.generateServiceImpl();
         controllerGenerator.generateController();
-
     }
 
     private Map<String, LinkedList<ColumnMetadata>> getMetadata() {
@@ -48,5 +47,4 @@ public class Generator {
             throw new RuntimeException();
         }
     }
-
 }
