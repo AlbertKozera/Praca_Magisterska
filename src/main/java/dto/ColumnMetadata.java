@@ -10,7 +10,7 @@ public class ColumnMetadata {
     String databaseType;
     String javaType;
     String javaTypePackage;
-    String isNullable;
-    String isAutoincrement;
+    //String isNullable;
+    //String isAutoincrement;
     boolean isPrimaryKey;
 }

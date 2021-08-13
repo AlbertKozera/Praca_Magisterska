@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #2B2B2B;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.controller.MainController">
+    <children>
+        <Button fx:id="generator" layoutX="284.0" layoutY="272.0" mnemonicParsing="false" onAction="#switchScene" prefHeight="58.0" prefWidth="235.0" stylesheets="@../css/button.css" text="Generator" textFill="WHITE">
+            <font>
+                <Font name="System Bold Italic" size="14.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor></Button>
+        <Button fx:id="options" layoutX="284.0" layoutY="342.0" mnemonicParsing="false" onAction="#switchScene" prefHeight="58.0" prefWidth="235.0" stylesheets="@../css/button.css" text="Opcje">
+            <font>
+                <Font name="System Bold Italic" size="14.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor></Button>
+        <Button fx:id="close" layoutX="284.0" layoutY="412.0" mnemonicParsing="false" onAction="#closeApplication" prefHeight="58.0" prefWidth="235.0" stylesheets="@../css/button.css" text="Wyjście">
+            <font>
+                <Font name="System Bold Italic" size="14.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="457.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../img/img_1.png" />
+            </image>
+        </ImageView>
+      <ImageView fitHeight="95.0" fitWidth="99.0" layoutX="498.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true" rotate="45.0">
+          <image>
+              <Image url="@../img/img_2.jpg" />
+          </image>
+         <effect>
+            <Shadow blurType="TWO_PASS_BOX" height="4.45" radius="0.6125" width="0.0">
+               <color>
+                  <Color red="0.49803921580314636" green="0.545098066329956" blue="0.5921568870544434" opacity="0.4000000059604645" />
+               </color>
+            </Shadow>
+         </effect>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="196.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+              <Image url="@../img/img_3.png" />
+          </image>
+      </ImageView>
+      <ImageView fitHeight="50.0" fitWidth="49.0" layoutX="380.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+              <Image url="@../img/img_4.png" />
+          </image>
+         <effect>
+            <DropShadow blurType="ONE_PASS_BOX" height="0.0" offsetX="5.0" radius="18.03" spread="0.5" width="74.12">
+               <color>
+                  <Color red="0.5015000104904175" green="0.5472249984741211" blue="0.5899999737739563" opacity="0.40434783697128296" />
+               </color>
+            </DropShadow>
+         </effect>
+      </ImageView>
+    </children>
+</AnchorPane>

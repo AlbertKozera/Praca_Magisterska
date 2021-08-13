@@ -38,9 +38,9 @@ public class MetadataService {
                 .name(columnName)
                 .databaseType(getProperty(rs, "TYPE_NAME"))
                 .javaType(JdbcClassConverter.getName(getProperty(rs, "DATA_TYPE")))
-                .javaTypePackage(JdbcClassConverter.getPackageName(getProperty(rs, "DATA_TYPE")))
-                .isNullable(getProperty(rs, "IS_NULLABLE"))
-                .isAutoincrement(getProperty(rs, "IS_AUTOINCREMENT"));
+                .javaTypePackage(JdbcClassConverter.getPackageName(getProperty(rs, "DATA_TYPE")));
+                //.isNullable(getProperty(rs, "IS_NULLABLE"))
+                //.isAutoincrement(getProperty(rs, "IS_AUTOINCREMENT"));
         if(columnName.equals(primaryKeyColumn))
             columnMetadataBuilder.isPrimaryKey(true);
         return columnMetadataBuilder.build();
