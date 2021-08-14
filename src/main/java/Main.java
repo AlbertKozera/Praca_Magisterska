@@ -7,7 +7,6 @@ import java.sql.SQLException;
 
 @Slf4j
 public class Main {
-    public static final Connection connection = DbConfig.connection();
     public static void main(String[] args) throws SQLException {
         var generator = new Generator();
         generator.generate();

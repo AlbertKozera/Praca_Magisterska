@@ -1,12 +1,15 @@
 package generator;
 
 import config.DbConfig;
+import config.Extension;
+import config.Path;
 import generator.content.*;
 import generator.structure.DirectoryCreator;
 import generator.structure.FileGenerator;
 import dto.ColumnMetadata;
 import dto.DbParameters;
 import lombok.extern.slf4j.Slf4j;
+import service.LoaderService;
 import service.MetadataService;
 
 import java.sql.SQLException;
@@ -22,6 +25,7 @@ public class Generator {
     private ServiceGenerator serviceGenerator = new ServiceGenerator();
     private ServiceImplGenerator serviceImplGenerator = new ServiceImplGenerator(getMetadata());
     private ControllerGenerator controllerGenerator = new ControllerGenerator(getMetadata());
+    private UriContainerGenerator uriContainerGenerator = new UriContainerGenerator(getMetadata());
 
     public void generate() {
         directoryCreator.generateStructure();
@@ -35,10 +39,12 @@ public class Generator {
         serviceGenerator.generateService();
         serviceImplGenerator.generateServiceImpl();
         controllerGenerator.generateController();
+        uriContainerGenerator.generateUriContainer();
     }
 
     private Map<String, LinkedList<ColumnMetadata>> getMetadata() {
-        var connection = DbConfig.connection();
+        var c = LoaderService.loadConfigFile();
+        var connection = DbConfig.connection(c.getJdbcDriverPath(), c.getDriverClassName(), c.getUrl(), c.getUsername(), c.getPassword());
         try {
             var metadataService = new MetadataService();
             return metadataService.getMetadata(connection);

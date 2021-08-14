@@ -66,3 +66,19 @@
 #filesDirectory:pressed > .glyph-icon {
     -fx-fill: #cfdceb;
 }
+
+.list-view .scroll-bar, .corner {
+    -fx-background-color: #2B2B2B;
+}
+
+.list-view .scroll-bar .thumb {
+    -fx-background-color: #313335;
+}
+
+.list-view .scroll-bar .thumb:hover {
+    -fx-background-color: #3a3a3a;
+}
+
+.list-view .scroll-bar .thumb:pressed {
+    -fx-background-color: #414141;
+}
