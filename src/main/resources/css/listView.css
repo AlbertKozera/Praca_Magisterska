@@ -7,10 +7,6 @@
     -fx-font-style: italic bold;
 }
 
-.list-view:pressed {
-    -fx-border-color: #646464;
-}
-
 .list-cell:even {
     -fx-background-color: #353535;
     -fx-text-fill: #a9b7c6;
@@ -36,35 +32,6 @@
 .hyperlink, #clearList {
     -fx-font-size: 1;
     -fx-border-width: 0;
-}
-
-.hyperlink .glyph-icon, #clearList .glyph-icon {
-    -fx-fill: #b45959;
-}
-
-.hyperlink:hover > .glyph-icon, #clearList:hover > .glyph-icon {
-    -fx-fill: #b4383e;
-}
-
-.hyperlink:pressed > .glyph-icon, #clearList:pressed > .glyph-icon {
-    -fx-fill: #af0e0f;
-}
-
-#filesDirectory {
-    -fx-font-size: 1;
-    -fx-border-width: 0;
-}
-
-#filesDirectory .glyph-icon {
-    -fx-fill: #8896a5;
-}
-
-#filesDirectory:hover > .glyph-icon {
-    -fx-fill: #a9b7c6;
-}
-
-#filesDirectory:pressed > .glyph-icon {
-    -fx-fill: #cfdceb;
 }
 
 .list-view .scroll-bar, .corner {

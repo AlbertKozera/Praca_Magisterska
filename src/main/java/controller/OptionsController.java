@@ -1,8 +1,6 @@
 package controller;
 
-
 import app.ApplicationJavaFx;
-import config.DbConfig;
 import config.Extension;
 import dto.Config;
 import javafx.event.ActionEvent;
@@ -12,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import lombok.extern.slf4j.Slf4j;
 import service.ConfigService;
+import service.LoaderService;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -39,7 +38,7 @@ public class OptionsController {
 
     @FXML
     void initialize() {
-        var config = configService.loadConfigFile();
+        var config = LoaderService.loadConfigFile();
         if(config != null) {
             fillOptionsFields(config);
         }
@@ -47,8 +46,6 @@ public class OptionsController {
 
     public void saveChanges() {
         configService.saveConfig(getConfigProperties());
-        DbConfig.urlSpec = getConfigProperties().getUrl();
-        DbConfig.driverClassName = getConfigProperties().getDriverClassName();
     }
 
     private void fillOptionsFields(Config config) {

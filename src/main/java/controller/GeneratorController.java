@@ -2,7 +2,7 @@ package controller;
 
 import app.ApplicationJavaFx;
 import config.Extension;
-import dto.UriContainer;
+import controller.customization.ListViewCell;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -24,6 +24,7 @@ public class GeneratorController {
     void initialize() {
         fillHttpMethodChooser();
         httpMethodChooserListener();
+        restListView.setCellFactory(param -> new ListViewCell());
     }
 
     private void fillHttpMethodChooser() {

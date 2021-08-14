@@ -74,7 +74,7 @@
                       <Font name="System Bold Italic" size="14.0" />
                   </font>
                   <cursor>
-                      <Cursor fx:constant="WAIT" />
+                      <Cursor fx:constant="HAND" />
                   </cursor>
             </Button>
               <Button fx:id="options" layoutY="78.0" mnemonicParsing="false" onAction="#switchScene" prefHeight="58.0" prefWidth="235.0" stylesheets="@../css/button.css" text="Konfiguracja">
