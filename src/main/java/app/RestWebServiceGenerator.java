@@ -12,7 +12,7 @@ import service.ConfigService;
 import java.io.IOException;
 import java.util.Objects;
 
-public class ApplicationJavaFx extends Application {
+public class RestWebServiceGenerator extends Application {
     private final ConfigService configService = new ConfigService();
     private static Stage primaryStage;
 
@@ -23,22 +23,19 @@ public class ApplicationJavaFx extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
-
-
-        FXMLLoader fxmlLoader = new FXMLLoader(ApplicationJavaFx.class.getResource("/fxml/main.fxml"));
+        var fxmlLoader = new FXMLLoader(RestWebServiceGenerator.class.getResource("/fxml/main.fxml"));
         AnchorPane anchorPane = fxmlLoader.load();
-        Scene scene = new Scene(anchorPane);
-        primaryStage.getIcons().add(new Image(Objects.requireNonNull(ApplicationJavaFx.class.getResourceAsStream("/img/img_1.png"))));
+        var scene = new Scene(anchorPane);
+        primaryStage.getIcons().add(new Image(Objects.requireNonNull(RestWebServiceGenerator.class.getResourceAsStream("/img/img_1.png"))));
         primaryStage.setTitle("Generator usług REST Web Services");
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();
-        //log.info("Application started");
         configService.createConfigFileIfNotExists();
     }
 
     public static void switchScene(String fxml) throws IOException {
-        Parent parent = FXMLLoader.load(ApplicationJavaFx.class.getResource("/fxml/" + fxml));
+        Parent parent = FXMLLoader.load(Objects.requireNonNull(RestWebServiceGenerator.class.getResource("/fxml/" + fxml)));
         primaryStage.getScene().setRoot(parent);
     }
 }

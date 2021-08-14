@@ -1,6 +1,6 @@
 package controller;
 
-import app.ApplicationJavaFx;
+import app.RestWebServiceGenerator;
 import config.Extension;
 import controller.customization.ListViewCell;
 import javafx.event.ActionEvent;
@@ -62,7 +62,7 @@ public class GeneratorController {
 
     public void switchScene(ActionEvent actionEvent) throws IOException {
         var button = (Button) actionEvent.getSource();
-        ApplicationJavaFx.switchScene( button.getId() + Extension.FXML);
+        RestWebServiceGenerator.switchScene( button.getId() + Extension.FXML);
     }
 
 }
