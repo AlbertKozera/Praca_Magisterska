@@ -17,7 +17,7 @@
                      <Font name="Monotype Corsiva" size="19.0" />
                  </font>
                <cursor>
-                  <Cursor fx:constant="TEXT" />
+                  <Cursor fx:constant="DEFAULT" />
                </cursor>
                <effect>
                   <DropShadow blurType="ONE_PASS_BOX" height="41.5" offsetX="2.0" radius="20.25" width="41.5">
@@ -29,67 +29,52 @@
              </Label>
             <Pane layoutX="19.0" layoutY="79.0" prefHeight="169.0" prefWidth="368.0">
                <children>
-                    <ImageView fitHeight="141.0" fitWidth="153.0" layoutX="229.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                   <Label alignment="TOP_LEFT" layoutY="20.0" prefHeight="141.0" prefWidth="368.0" style="-fx-background-color: #353535;" textAlignment="CENTER" textFill="#a9b7c6" wrapText="true">
+                       <font>
+                           <Font name="Monotype Corsiva" size="19.0" />
+                       </font>
+                       <cursor>
+                           <Cursor fx:constant="DEFAULT" />
+                       </cursor>
+                       <effect>
+                           <DropShadow blurType="ONE_PASS_BOX" height="41.5" offsetX="2.0" radius="20.25" width="41.5">
+                               <color>
+                                   <Color red="0.487199991941452" green="0.5284533500671387" blue="0.5600000023841858" opacity="0.4000000059604645" />
+                               </color>
+                           </DropShadow>
+                       </effect>
+                   </Label>
+                    <ImageView fitHeight="117.0" fitWidth="117.0" layoutX="237.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
                         <image>
                             <Image url="@../img/img_1.png" />
                         </image>
-                     <effect>
-                        <DropShadow blurType="ONE_PASS_BOX" height="41.5" offsetX="2.0" radius="20.25" width="41.5">
-                           <color>
-                              <Color red="0.48235294222831726" green="0.5254902243614197" blue="0.5607843399047852" opacity="0.4000000059604645" />
-                           </color>
-                        </DropShadow>
-                     </effect>
                     </ImageView>
-                  <ImageView fitHeight="88.0" fitWidth="87.0" layoutX="268.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true" rotate="44.0">
-                      <image>
-                          <Image url="@../img/img_2.jpg" />
-                      </image>
-                     <effect>
-                        <Shadow blurType="TWO_PASS_BOX" height="4.45" radius="0.6125" width="0.0">
-                           <color>
-                              <Color red="0.49803921580314636" green="0.545098066329956" blue="0.5921568870544434" opacity="0.4000000059604645" />
-                           </color>
-                        </Shadow>
-                     </effect>
-                  </ImageView>
-                  <ImageView fitHeight="144.0" fitWidth="141.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="44.0" fitWidth="38.0" layoutX="165.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
                       <image>
                           <Image url="@../img/img_3.png" />
                       </image>
-                     <effect>
-                        <DropShadow blurType="ONE_PASS_BOX" height="41.5" offsetX="2.0" radius="20.25" width="41.5">
-                           <color>
-                              <Color red="0.48235294222831726" green="0.5254902243614197" blue="0.5607843399047852" opacity="0.4000000059604645" />
-                           </color>
-                        </DropShadow>
-                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
                   </ImageView>
-                  <ImageView fitHeight="44.0" fitWidth="38.0" layoutX="170.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
-                      <image>
-                          <Image url="@../img/img_4.png" />
-                      </image>
-                     <effect>
-                        <DropShadow blurType="ONE_PASS_BOX" height="41.5" offsetX="2.0" radius="20.25" width="41.5">
-                           <color>
-                              <Color red="0.501960813999176" green="0.5490196347236633" blue="0.5882353186607361" opacity="0.4000000059604645" />
-                           </color>
-                        </DropShadow>
-                     </effect>
+                  <ImageView fitHeight="117.0" fitWidth="117.0" layoutX="14.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/img_2.png" />
+                     </image>
                   </ImageView>
                </children>
             </Pane>
 
          </children>
       </Pane>
-      <Pane layoutX="85.0" layoutY="264.0" prefHeight="237.0" prefWidth="235.0">
+      <Pane layoutX="85.0" layoutY="276.0" prefHeight="216.0" prefWidth="235.0">
          <children>
               <Button fx:id="generator" mnemonicParsing="false" onAction="#switchScene" prefHeight="58.0" prefWidth="235.0" stylesheets="@../css/button.css" text="Generuj" textFill="WHITE">
                   <font>
                       <Font name="System Bold Italic" size="14.0" />
                   </font>
                   <cursor>
-                      <Cursor fx:constant="HAND" />
+                      <Cursor fx:constant="WAIT" />
                   </cursor>
             </Button>
               <Button fx:id="options" layoutY="78.0" mnemonicParsing="false" onAction="#switchScene" prefHeight="58.0" prefWidth="235.0" stylesheets="@../css/button.css" text="Konfiguracja">

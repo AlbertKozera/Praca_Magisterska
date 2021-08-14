@@ -28,7 +28,7 @@ public class ApplicationJavaFx extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(ApplicationJavaFx.class.getResource("/fxml/main.fxml"));
         AnchorPane anchorPane = fxmlLoader.load();
         Scene scene = new Scene(anchorPane);
-        primaryStage.getIcons().add(new Image(Objects.requireNonNull(ApplicationJavaFx.class.getResourceAsStream("/img/logo_3.png"))));
+        primaryStage.getIcons().add(new Image(Objects.requireNonNull(ApplicationJavaFx.class.getResourceAsStream("/img/img_1.png"))));
         primaryStage.setTitle("Generator usług REST Web Services");
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
