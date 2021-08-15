@@ -2,6 +2,7 @@ package service;
 
 import config.JdbcClassConverter;
 import dto.ColumnMetadata;
+import dto.Config;
 import lombok.extern.slf4j.Slf4j;
 
 import java.sql.Connection;
@@ -13,19 +14,19 @@ import java.util.*;
 @Slf4j
 public class MetadataService {
 
-    public Map<String, LinkedList<ColumnMetadata>> getMetadata(Connection connection) throws SQLException {
+    public Map<String, LinkedList<ColumnMetadata>> getMetadata(Connection connection, Config config) throws SQLException {
         Map<String, LinkedList<ColumnMetadata>> metadata = new LinkedHashMap<>();
         List<ColumnMetadata> columnMetadataList = new LinkedList<>();
         String previousTableName = null;
         var databaseMetaData = connection.getMetaData();
-        ResultSet rs = databaseMetaData.getColumns(null, "C##ALBERT", null, null);
+        ResultSet rs = databaseMetaData.getColumns(null, config.getSchemaName(), null, null);
         while (rs.next()) {
             var tableName = getProperty(rs, "TABLE_NAME");
             if(!tableName.equals(previousTableName) && previousTableName != null) {
                 metadata.put(previousTableName, new LinkedList<>(columnMetadataList));
                 columnMetadataList.clear();
             }
-            columnMetadataList.add(getColumnMetadata(rs, getPrimaryKeyColumnForTable(databaseMetaData, tableName)));
+            columnMetadataList.add(getColumnMetadata(rs, getPrimaryKeyColumnForTable(databaseMetaData, config.getSchemaName(), tableName)));
             previousTableName = getProperty(rs, "TABLE_NAME");
         }
         metadata.put(previousTableName, new LinkedList<>(columnMetadataList));
@@ -46,8 +47,8 @@ public class MetadataService {
         return columnMetadataBuilder.build();
     }
 
-    private String getPrimaryKeyColumnForTable(DatabaseMetaData databaseMetaData, String tableName) throws SQLException {
-        ResultSet rs = databaseMetaData.getPrimaryKeys(null, "C##ALBERT", tableName);
+    private String getPrimaryKeyColumnForTable(DatabaseMetaData databaseMetaData, String schemaName, String tableName) throws SQLException {
+        ResultSet rs = databaseMetaData.getPrimaryKeys(null, schemaName, tableName);
         rs.next();
         return getProperty(rs, "COLUMN_NAME");
     }

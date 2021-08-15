@@ -8,116 +8,121 @@
 
 <AnchorPane prefHeight="527.0" prefWidth="405.0" style="-fx-background-color: #2B2B2B;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.OptionsController">
     <children>
-      <Pane layoutX="20.0" layoutY="20.0" prefHeight="400.0" prefWidth="365.0">
-         <children>
-            <Pane prefHeight="112.0" prefWidth="365.0">
-               <children>
-                    <Label alignment="TOP_CENTER" layoutY="31.0" prefHeight="81.0" prefWidth="365.0" style="-fx-background-color: #353535;" textFill="#a9b7c6">
-                        <font>
-                            <Font size="15.0" />
-                        </font>
-                    </Label>
-                    <TextField fx:id="url" layoutX="7.0" layoutY="38.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="351.0" promptText="url" stylesheets="@../css/textField.css">
-                        <cursor>
-                            <Cursor fx:constant="TEXT" />
-                        </cursor>
-                    </TextField>
-                    <TextField fx:id="username" layoutX="7.0" layoutY="75.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="172.0" promptText="nazwa użytkownika" stylesheets="@../css/textField.css">
-                        <cursor>
-                            <Cursor fx:constant="TEXT" />
-                        </cursor>
-                    </TextField>
-                  <PasswordField fx:id="password" layoutX="186.0" layoutY="75.0" prefHeight="30.0" prefWidth="172.0" promptText="hasło" stylesheets="@../css/textField.css" />
-                   <Label alignment="CENTER" prefHeight="29.0" prefWidth="365.0" style="-fx-background-color: #353535;" text="Połączenie z bazą danych" textFill="#a9b7c6">
-                       <font>
-                           <Font size="15.0" />
-                       </font>
-                   </Label>
-               </children>
-            </Pane>
-            <Pane layoutY="119.0" prefHeight="112.0" prefWidth="365.0">
-               <children>
-                  <Label alignment="TOP_CENTER" layoutY="31.0" prefHeight="81.0" prefWidth="365.0" style="-fx-background-color: #353535;" textFill="#a9b7c6">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="jdbcDriverPath" layoutX="7.0" layoutY="38.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="300.0" promptText="ścieżka do sterownika JDBC" stylesheets="@../css/textField.css">
-                     <cursor>
-                        <Cursor fx:constant="TEXT" />
-                     </cursor>
-                  </TextField>
-                  <Label alignment="CENTER" prefHeight="29.0" prefWidth="365.0" style="-fx-background-color: #353535;" text="Sterownik JDBC" textFill="#a9b7c6">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                    <Button fx:id="pathChooser" graphicTextGap="6.0" layoutX="314.0" layoutY="38.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#choosePatchForJdbcDriver" prefHeight="30.0" prefWidth="44.0" stylesheets="@../css/button.css">
-                        <cursor>
-                            <Cursor fx:constant="HAND" />
-                        </cursor>
-                     <graphic>
-                            <ImageView fitHeight="21.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@../img/img_5.png" />
-                                </image>
-                                 </ImageView>
-                     </graphic>
-                    </Button>
-                    <TextField fx:id="driverClassName" layoutX="7.0" layoutY="75.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="351.0" promptText="nazwa klasy sterownika JDBC" stylesheets="@../css/textField.css">
-                        <cursor>
-                            <Cursor fx:constant="TEXT" />
-                        </cursor>
-                    </TextField>
-               </children>
-            </Pane>
-            <Pane layoutY="238.0" prefHeight="112.0" prefWidth="365.0">
-               <children>
-                  <Label alignment="TOP_CENTER" layoutY="31.0" prefHeight="81.0" prefWidth="365.0" style="-fx-background-color: #353535;" textFill="#a9b7c6">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="hostname" layoutX="7.0" layoutY="38.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="277.0" promptText="nazwa hosta" stylesheets="@../css/textField.css">
-                     <cursor>
-                        <Cursor fx:constant="TEXT" />
-                     </cursor>
-                  </TextField>
-                  <TextField fx:id="serverPath" layoutX="7.0" layoutY="75.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="351.0" promptText="ścieżka serwera (opcjonalnie)" stylesheets="@../css/textField.css">
-                     <cursor>
-                        <Cursor fx:constant="TEXT" />
-                     </cursor>
-                  </TextField>
-                  <Label alignment="CENTER" prefHeight="29.0" prefWidth="365.0" style="-fx-background-color: #353535;" text="Ustawienia serwera" textFill="#a9b7c6">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                    <TextField fx:id="port" layoutX="291.0" layoutY="38.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="67.0" promptText="port" stylesheets="@../css/textField.css">
-                        <cursor>
-                            <Cursor fx:constant="TEXT" />
-                        </cursor>
-                    </TextField>
-               </children>
-            </Pane>
-              <Button layoutX="286.0" layoutY="357.0" mnemonicParsing="false" onAction="#saveChanges" prefHeight="43.0" prefWidth="79.0" stylesheets="@../css/button.css" text="Zapisz">
-                  <cursor>
-                      <Cursor fx:constant="HAND" />
-                  </cursor>
-              </Button>
-         </children>
-      </Pane>
+        <Pane layoutX="20.0" layoutY="20.0" prefHeight="400.0" prefWidth="365.0">
+            <children>
+                <Pane prefHeight="112.0" prefWidth="365.0">
+                    <children>
+                        <Label alignment="TOP_CENTER" layoutY="31.0" prefHeight="81.0" prefWidth="365.0" style="-fx-background-color: #353535;" textFill="#a9b7c6">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="url" layoutX="7.0" layoutY="38.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="231.0" promptText="url" stylesheets="@../css/textField.css">
+                            <cursor>
+                                <Cursor fx:constant="TEXT" />
+                            </cursor>
+                        </TextField>
+                        <TextField fx:id="schemaName" layoutX="245.0" layoutY="38.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="113.0" promptText="nazwa schematu" stylesheets="@../css/textField.css">
+                            <cursor>
+                                <Cursor fx:constant="TEXT" />
+                            </cursor>
+                        </TextField>
+                        <TextField fx:id="username" layoutX="7.0" layoutY="75.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="172.0" promptText="nazwa użytkownika" stylesheets="@../css/textField.css">
+                            <cursor>
+                                <Cursor fx:constant="TEXT" />
+                            </cursor>
+                        </TextField>
+                        <PasswordField fx:id="password" layoutX="186.0" layoutY="75.0" prefHeight="30.0" prefWidth="172.0" promptText="hasło" stylesheets="@../css/textField.css" />
+                        <Label alignment="CENTER" prefHeight="29.0" prefWidth="365.0" style="-fx-background-color: #353535;" text="Połączenie z bazą danych" textFill="#a9b7c6">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+                <Pane layoutY="119.0" prefHeight="112.0" prefWidth="365.0">
+                    <children>
+                        <Label alignment="TOP_CENTER" layoutY="31.0" prefHeight="81.0" prefWidth="365.0" style="-fx-background-color: #353535;" textFill="#a9b7c6">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="jdbcDriverPath" layoutX="7.0" layoutY="38.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="300.0" promptText="ścieżka do sterownika JDBC" stylesheets="@../css/textField.css">
+                            <cursor>
+                                <Cursor fx:constant="TEXT" />
+                            </cursor>
+                        </TextField>
+                        <Label alignment="CENTER" prefHeight="29.0" prefWidth="365.0" style="-fx-background-color: #353535;" text="Sterownik JDBC" textFill="#a9b7c6">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <Button fx:id="pathChooser" graphicTextGap="6.0" layoutX="314.0" layoutY="38.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#choosePatchForJdbcDriver" prefHeight="30.0" prefWidth="44.0" stylesheets="@../css/button.css">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                            <graphic>
+                                <ImageView fitHeight="21.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../img/img_5.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <TextField fx:id="driverClassName" layoutX="7.0" layoutY="75.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="351.0" promptText="nazwa klasy sterownika JDBC" stylesheets="@../css/textField.css">
+                            <cursor>
+                                <Cursor fx:constant="TEXT" />
+                            </cursor>
+                        </TextField>
+                    </children>
+                </Pane>
+                <Pane layoutY="238.0" prefHeight="112.0" prefWidth="365.0">
+                    <children>
+                        <Label alignment="TOP_CENTER" layoutY="31.0" prefHeight="81.0" prefWidth="365.0" style="-fx-background-color: #353535;" textFill="#a9b7c6">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="hostname" layoutX="7.0" layoutY="38.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="277.0" promptText="nazwa hosta" stylesheets="@../css/textField.css">
+                            <cursor>
+                                <Cursor fx:constant="TEXT" />
+                            </cursor>
+                        </TextField>
+                        <TextField fx:id="serverPath" layoutX="7.0" layoutY="75.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="351.0" promptText="ścieżka serwera (opcjonalnie)" stylesheets="@../css/textField.css">
+                            <cursor>
+                                <Cursor fx:constant="TEXT" />
+                            </cursor>
+                        </TextField>
+                        <Label alignment="CENTER" prefHeight="29.0" prefWidth="365.0" style="-fx-background-color: #353535;" text="Ustawienia serwera" textFill="#a9b7c6">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="port" layoutX="291.0" layoutY="38.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="67.0" promptText="port" stylesheets="@../css/textField.css">
+                            <cursor>
+                                <Cursor fx:constant="TEXT" />
+                            </cursor>
+                        </TextField>
+                    </children>
+                </Pane>
+                <Button layoutX="286.0" layoutY="357.0" mnemonicParsing="false" onAction="#saveChanges" prefHeight="43.0" prefWidth="79.0" stylesheets="@../css/button.css" text="Zapisz">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+            </children>
+        </Pane>
         <Button fx:id="main" layoutX="181.0" layoutY="471.0" mnemonicParsing="false" onAction="#switchScene" prefHeight="43.0" prefWidth="44.0" stylesheets="@../css/button.css">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
-         <graphic>
-            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../img/img_4.png" />
-               </image>
-            </ImageView>
-         </graphic>
+            <graphic>
+                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../img/img_4.png" />
+                    </image>
+                </ImageView>
+            </graphic>
         </Button>
     </children>
 </AnchorPane>

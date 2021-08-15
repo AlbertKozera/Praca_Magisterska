@@ -9,6 +9,7 @@ public class Config {
     String url;
     String username;
     String password;
+    String schemaName;
     String jdbcDriverPath;
     String driverClassName;
     String hostname;

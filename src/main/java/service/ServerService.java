@@ -1,13 +1,15 @@
 package service;
 
+import com.sun.net.httpserver.HttpServer;
 import config.Package;
 import dto.Config;
 import lombok.extern.slf4j.Slf4j;
+import org.glassfish.jersey.jdkhttp.JdkHttpServerFactory;
+import org.glassfish.jersey.server.ResourceConfig;
 
 import javax.ws.rs.core.UriBuilder;
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -16,13 +18,21 @@ import java.util.List;
 @Slf4j
 public class ServerService {
 
-    public void serverStart(Config config) {
+    public static HttpServer jerseyServer;
+
+    public static void serverStart(Config config) {
+        var serverService = new ServerService();
         var uri = UriBuilder.fromUri("http://" + config.getHostname() + "/")
                 .port(Integer.parseInt(config.getPort()))
-                .path(config.getServerPath()).build();
-        var myClasses = getServicesFromController();
-        //ResourceConfig config = new ResourceConfig(myClasses);
-        //JdkHttpServerFactory.createHttpServer(uri, config);
+                .path(config.getServerPath())
+                .path(config.getSchemaName()).build();
+        var myClasses = serverService.getServicesFromController();
+        var resourceConfig = new ResourceConfig(myClasses);
+        jerseyServer = JdkHttpServerFactory.createHttpServer(uri, resourceConfig);
+    }
+
+    public static void stopServer() {
+        jerseyServer.stop(0);
     }
 
     private Class[] getServicesFromController() {

@@ -1,14 +1,17 @@
 package generator.content;
 
 import com.squareup.javapoet.*;
+import config.Common;
 import config.Package;
 import dto.ColumnMetadata;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.lang.model.element.Modifier;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.*;
 
 import static config.Common.*;
@@ -98,7 +101,7 @@ public class ServiceImplGenerator {
                 .addStatement("$T rs = statement.executeQuery(query)", ResultSet.class)
                 .beginControlFlow("while (rs.next())")
                 .add("list.add($L.builder()", getDtoClassName(table));
-        columnMetadataList.forEach(c -> codeBlock.add("\n  .$L(rs.get$L($S))", c.getName(), c.getJavaType(), c.getName()));
+        columnMetadataList.forEach(c -> codeBlock.add("\n  .$L(rs.get$L($S))", c.getName(), getResultSetMethodForSpecificJavaType(c.getJavaType()), c.getName()));
         codeBlock.add(".build());\n").endControlFlow().addStatement("return list").add(generateCatchBlock());
         return codeBlock.build();
     }
@@ -111,7 +114,7 @@ public class ServiceImplGenerator {
                 .addStatement("$T rs = preparedStatement.executeQuery()", ResultSet.class)
                 .addStatement("rs.next()")
                 .add("return $L.builder()", getDtoClassName(table));
-        columnMetadataList.forEach(c -> codeBlock.add("\n  .$L(rs.get$L($S))", c.getName(), c.getJavaType(), c.getName()));
+        columnMetadataList.forEach(c -> codeBlock.add("\n  .$L(rs.get$L($S))", c.getName(), getResultSetMethodForSpecificJavaType(c.getJavaType()), c.getName()));
         codeBlock.add(".build();\n").add(generateCatchBlock());
         return codeBlock.build();
     }
@@ -218,14 +221,14 @@ public class ServiceImplGenerator {
     }
 
     private CodeBlock setValuesForPreparedStatementForMethodGetById(List<ColumnMetadata> columnMetadataList) {
-        return CodeBlock.builder().addStatement("preparedStatement.set$L(1, id)", getPrimaryKeyColumn(columnMetadataList).getJavaType()).build();
+        return CodeBlock.builder().addStatement("preparedStatement.set$L(1, id)", getResultSetMethodForSpecificJavaType(getPrimaryKeyColumn(columnMetadataList).getJavaType())).build();
     }
 
     private CodeBlock setValuesForPreparedStatementForMethodAdd(String table, List<ColumnMetadata> columnMetadataList) {
         var codeBlock = CodeBlock.builder();
         var parameterIndex = 1;
         for (ColumnMetadata c : columnMetadataList) {
-            codeBlock.addStatement("preparedStatement.set$L($L, $L.get$L())", c.getJavaType(), parameterIndex++, getDtoObjectName(table), c.getName());
+            codeBlock.addStatement("preparedStatement.set$L($L, $L.get$L())", getResultSetMethodForSpecificJavaType(c.getJavaType()), parameterIndex++, getDtoObjectName(table), capitalizeFirstLetter(c.getName()));
         }
         codeBlock.addStatement("preparedStatement.executeUpdate()");
         return codeBlock.build();
@@ -235,16 +238,91 @@ public class ServiceImplGenerator {
         var codeBlock = CodeBlock.builder();
         var parameterIndex = 1;
         for (ColumnMetadata c : columnMetadataList) {
-            codeBlock.addStatement("preparedStatement.set$L($L, $L.get$L())", c.getJavaType(), parameterIndex++, getDtoObjectName(table), c.getName());
+            codeBlock.addStatement("preparedStatement.set$L($L, $L.get$L())", getResultSetMethodForSpecificJavaType(c.getJavaType()), parameterIndex++, getDtoObjectName(table), capitalizeFirstLetter(c.getName()));
         }
-        codeBlock.addStatement("preparedStatement.set$L($L, id)", getPrimaryKeyColumn(columnMetadataList).getJavaType(), parameterIndex);
+        codeBlock.addStatement("preparedStatement.set$L($L, id)", getResultSetMethodForSpecificJavaType(getPrimaryKeyColumn(columnMetadataList).getJavaType()), parameterIndex);
         codeBlock.addStatement("preparedStatement.executeUpdate()");
         return codeBlock.build();
     }
 
     private CodeBlock setValuesForPreparedStatementForMethodDelete(List<ColumnMetadata> columnMetadataList) {
         return CodeBlock.builder()
-                .addStatement("preparedStatement.set$L(1, id)", getPrimaryKeyColumn(columnMetadataList).getJavaType())
+                .addStatement("preparedStatement.set$L(1, id)", getResultSetMethodForSpecificJavaType(getPrimaryKeyColumn(columnMetadataList).getJavaType()))
                 .addStatement("preparedStatement.executeUpdate()").build();
+    }
+
+    private String getResultSetMethodForSpecificJavaType(String type) {
+        String result = null;
+        switch (type) {
+            case "String":
+                result = "String";
+                break;
+
+            case "BigDecimal":
+                result = "BigDecimal";
+                break;
+
+            case "Boolean":
+                result = "Boolean";
+                break;
+
+            case "Byte":
+                result = "Byte";
+                break;
+
+            case "Short":
+                result = "Short";
+                break;
+
+            case "Integer":
+                result = "Int";
+                break;
+
+            case "Long":
+                result = "Long";
+                break;
+
+            case "Float":
+                result = "Float";
+                break;
+
+            case "Double":
+                result = "Double";
+                break;
+
+            case "Byte[]":
+                result = "Bytes";
+                break;
+
+            case "Date":
+                result = "Date";
+                break;
+
+            case "Time":
+                result = "Time";
+                break;
+
+            case "Timestamp":
+                result = "Timestamp";
+                break;
+
+            case "Clob":
+                result = "Clob";
+                break;
+
+            case "Blob":
+                result = "Blob";
+                break;
+
+            case "Array":
+                result = "Array";
+                break;
+
+            case "Ref":
+                result = "Ref";
+                break;
+        }
+        return result;
+
     }
 }

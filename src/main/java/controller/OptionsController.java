@@ -26,6 +26,8 @@ public class OptionsController {
     @FXML
     private TextField password;
     @FXML
+    private TextField schemaName;
+    @FXML
     private TextField jdbcDriverPath;
     @FXML
     private TextField driverClassName;
@@ -52,6 +54,7 @@ public class OptionsController {
         url.setText(config.getUrl());
         username.setText(config.getUsername());
         password.setText(config.getPassword());
+        schemaName.setText(config.getSchemaName());
         jdbcDriverPath.setText(config.getJdbcDriverPath());
         driverClassName.setText(config.getDriverClassName());
         hostname.setText(config.getHostname());
@@ -64,6 +67,7 @@ public class OptionsController {
                 .url(url.getText())
                 .username(username.getText())
                 .password(password.getText())
+                .schemaName(schemaName.getText())
                 .jdbcDriverPath(jdbcDriverPath.getText())
                 .driverClassName(driverClassName.getText())
                 .hostname(hostname.getText())

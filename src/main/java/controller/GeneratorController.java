@@ -10,6 +10,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import service.GeneratorService;
 import service.LoaderService;
+import service.ServerService;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -67,6 +68,7 @@ public class GeneratorController {
     }
 
     public void switchScene(ActionEvent actionEvent) throws IOException {
+        ServerService.stopServer();
         var button = (Button) actionEvent.getSource();
         RestWebServiceGenerator.switchScene( button.getId() + Extension.FXML);
     }

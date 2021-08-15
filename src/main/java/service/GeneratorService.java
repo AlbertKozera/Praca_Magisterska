@@ -18,9 +18,12 @@ import java.util.Map;
 
 @Slf4j
 public class GeneratorService {
+    ServerService serverService = new ServerService();
+
     public GeneratorService() {
         var config = LoaderService.loadConfigFile();
         generate(config);
+        serverService.serverStart(config);
     }
 
     public void generate(Config config) {
@@ -39,7 +42,7 @@ public class GeneratorService {
         var connection = DbConfig.connection(config.getJdbcDriverPath(), config.getDriverClassName(), config.getUrl(), config.getUsername(), config.getPassword());
         try {
             var metadataService = new MetadataService();
-            return metadataService.getMetadata(connection);
+            return metadataService.getMetadata(connection, config);
         } catch (SQLException sqlException) {
             log.error(sqlException.getMessage());
             throw new RuntimeException();

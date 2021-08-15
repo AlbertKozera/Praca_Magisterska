@@ -28,11 +28,11 @@ public class UriContainerGenerator {
             uri += "/" + config.getServerPath();
         }
         for(var entry : metadata.entrySet()) {
-            getServices.add(uri + "/" + entry.getKey().toLowerCase());
-            getServices.add(uri + "/" + entry.getKey().toLowerCase() + "/{id}");
-            postServices.add(uri + "/" + entry.getKey().toLowerCase());
-            putServices.add(uri + "/" + entry.getKey().toLowerCase() + "/{id}");
-            deleteServices.add(uri + "/" + entry.getKey().toLowerCase() + "/{id}");
+            getServices.add(uri + "/" + config.getSchemaName() + "/" + entry.getKey().toLowerCase());
+            getServices.add(uri + "/" + config.getSchemaName() + "/" + entry.getKey().toLowerCase() + "/{id}");
+            postServices.add(uri + "/" + config.getSchemaName() + "/" + entry.getKey().toLowerCase());
+            putServices.add(uri + "/" + config.getSchemaName() + "/" + entry.getKey().toLowerCase() + "/{id}");
+            deleteServices.add(uri + "/" + config.getSchemaName() + "/" + entry.getKey().toLowerCase() + "/{id}");
         }
         saveUriContainer(UriContainer.builder()
                 .getServices(getServices)

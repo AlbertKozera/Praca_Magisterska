@@ -1,1 +1,1 @@
-{"url":"jdbc:oracle:thin:@localhost:1521:orcl","username":"c##albert","password":"albert","jdbcDriverPath":"C:\\Users\\Alfu\\Downloads\\ojdb58.jar","driverClassName":"oracle.jdbc.OracleDriver","hostname":"localhost","port":"5896","serverPath":"serwer"}
+{"url":"jdbc:postgresql://localhost:5432/postgres","username":"postgres","password":"admin","schemaName":"torrent","jdbcDriverPath":"C:\\Users\\Alfu\\Downloads\\postgresql-42.2.23.jar","driverClassName":"org.postgresql.Driver","hostname":"localhost","port":"9912","serverPath":"myServer"}
