@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
+import service.GeneratorService;
 import service.LoaderService;
 
 import java.io.IOException;
@@ -23,15 +24,16 @@ public class GeneratorController {
     @FXML
     void initialize() {
         fillHttpMethodChooser();
-        httpMethodChooserListener();
-        restListView.setCellFactory(param -> new ListViewCell());
+        setListenerForHttpMethodChooser();
+        setCellFactoryForRestListView();
+        new GeneratorService();
     }
 
     private void fillHttpMethodChooser() {
         httpMethodChooser.getItems().addAll(Arrays.asList("GET", "POST", "PUT", "DELETE"));
     }
 
-    private void httpMethodChooserListener() {
+    private void setListenerForHttpMethodChooser() {
         httpMethodChooser.getSelectionModel()
                 .selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> {
@@ -54,6 +56,10 @@ public class GeneratorController {
                             cleanRestListView(restListView);
                     }
         });
+    }
+
+    private void setCellFactoryForRestListView() {
+        restListView.setCellFactory(param -> new ListViewCell());
     }
 
     private void cleanRestListView(ListView<String> restListView) {

@@ -4,9 +4,9 @@ import com.google.gson.Gson;
 import config.Extension;
 import config.Path;
 import dto.ColumnMetadata;
+import dto.Config;
 import dto.UriContainer;
 import lombok.extern.slf4j.Slf4j;
-import service.LoaderService;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -17,18 +17,12 @@ import java.util.Map;
 
 @Slf4j
 public class UriContainerGenerator {
-    private final Map<String, LinkedList<ColumnMetadata>> metadata;
 
-    public UriContainerGenerator(Map<String, LinkedList<ColumnMetadata>> metadata) {
-        this.metadata = metadata;
-    }
-
-    public void generateUriContainer() {
+    public UriContainerGenerator(Map<String, LinkedList<ColumnMetadata>> metadata, Config config) {
         List<String> getServices = new ArrayList<>();
         List<String> postServices = new ArrayList<>();
         List<String> putServices = new ArrayList<>();
         List<String> deleteServices = new ArrayList<>();
-        var config = LoaderService.loadConfigFile();
         String uri = "http://" + config.getHostname() + ":" + config.getPort();
         if(config.getServerPath() != null && !config.getServerPath().equals("")) {
             uri += "/" + config.getServerPath();

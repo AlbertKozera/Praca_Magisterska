@@ -24,13 +24,6 @@ public class ConfigService {
         }
     }
 
-    private Config getConfigProperties(File dataStorageDirectory) {
-        return Config.builder()
-                //.jdbcDriverPath()
-               // .saveTo(dataStorageDirectory.getAbsolutePath())
-                .build();
-    }
-
     public void saveConfig(Config config) {
         try (var fileWriter = new FileWriter(Path.PROJECT_RESOURCES + "config" + Extension.JSON)) {
             fileWriter.write(new Gson().toJson(config));

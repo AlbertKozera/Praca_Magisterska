@@ -19,11 +19,11 @@ public class DbConfig {
 
     public static Connection connection(String jdbcDriverPath, String driverClassName, String url, String username, String password) {
         try {
-/*            var urlClassLoader = new URLClassLoader(new URL[] { new URL("jar:file:/" + jdbcDriverPath + "!/") });
+            var urlClassLoader = new URLClassLoader(new URL[] { new URL("jar:file:/" + jdbcDriverPath + "!/") });
             Driver d = (Driver)Class.forName(driverClassName, true, urlClassLoader).getDeclaredConstructor().newInstance();
             DriverManager.registerDriver(new DriverShim(d));
-            return DriverManager.getConnection(url, username, password);*/
-            return DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "c##albert", "albert");
+            return DriverManager.getConnection(url, username, password);
+            //return DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "c##albert", "albert");
         } catch (Exception e) {
             log.error(e.getMessage());
             throw new RuntimeException();
@@ -66,7 +66,7 @@ public class DbConfig {
         }
 
         @Override
-        public Logger getParentLogger() throws SQLFeatureNotSupportedException {
+        public Logger getParentLogger() {
             return null;
         }
     }
