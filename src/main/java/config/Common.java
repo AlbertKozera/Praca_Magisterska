@@ -13,7 +13,11 @@ public class Common {
     private Common() {
     }
 
-    private static String capitalizeFirstLetter(String str) {
+    public static boolean empty(final String s) {
+        return s == null || s.trim().isEmpty();
+    }
+
+    public static String capitalizeFirstLetter(String str) {
         return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
     }
 

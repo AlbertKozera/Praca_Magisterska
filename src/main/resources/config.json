@@ -1,0 +1,1 @@
+{"url":"jdbc:postgresql://localhost:5432/postgres","username":"postgres","password":"admin","catalogName":"","schemaName":"torrent","jdbcDriverPath":"C:\\drivers\\postgresql-42.2.23.jar","driverClassName":"org.postgresql.Driver","hostname":"localhost","port":"9900","serverPath":"serwer"}

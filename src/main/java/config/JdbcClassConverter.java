@@ -78,10 +78,6 @@ public class JdbcClassConverter {
                 result = java.sql.Array.class;
                 break;
 
-            case Types.STRUCT:
-                result = java.sql.Struct.class;
-                break;
-
             case Types.REF:
                 result = java.sql.Ref.class;
                 break;

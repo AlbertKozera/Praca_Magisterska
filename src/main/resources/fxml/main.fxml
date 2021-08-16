@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="527.0" prefWidth="405.0" style="-fx-background-color: #2B2B2B;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+    <children>
+      <Pane prefHeight="276.0" prefWidth="405.0">
+         <children>
+             <Label alignment="TOP_LEFT" layoutX="20.0" layoutY="21.0" prefHeight="58.0" prefWidth="365.0" style="-fx-background-color: #353535;" text="Generowanie usług REST Web Services na podstawie metadanych pobranych z relacyjnej bazy danych" textAlignment="CENTER" textFill="#a9b7c6" wrapText="true">
+                 <font>
+                     <Font name="Monotype Corsiva" size="19.0" />
+                 </font>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="41.5" offsetX="2.0" radius="20.25" width="41.5">
+                     <color>
+                        <Color red="0.487199991941452" green="0.5284533500671387" blue="0.5600000023841858" opacity="0.4000000059604645" />
+                     </color>
+                  </DropShadow>
+               </effect>
+             </Label>
+            <Pane layoutX="19.0" layoutY="79.0" prefHeight="169.0" prefWidth="368.0">
+               <children>
+                   <Label alignment="TOP_LEFT" layoutY="20.0" prefHeight="141.0" prefWidth="368.0" style="-fx-background-color: #353535;" textAlignment="CENTER" textFill="#a9b7c6" wrapText="true">
+                       <font>
+                           <Font name="Monotype Corsiva" size="19.0" />
+                       </font>
+                       <cursor>
+                           <Cursor fx:constant="DEFAULT" />
+                       </cursor>
+                       <effect>
+                           <DropShadow blurType="ONE_PASS_BOX" height="41.5" offsetX="2.0" radius="20.25" width="41.5">
+                               <color>
+                                   <Color red="0.487199991941452" green="0.5284533500671387" blue="0.5600000023841858" opacity="0.4000000059604645" />
+                               </color>
+                           </DropShadow>
+                       </effect>
+                   </Label>
+                    <ImageView fitHeight="117.0" fitWidth="117.0" layoutX="237.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../img/img_1.png" />
+                        </image>
+                    </ImageView>
+                  <ImageView fitHeight="44.0" fitWidth="38.0" layoutX="165.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                          <Image url="@../img/img_3.png" />
+                      </image>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fitHeight="117.0" fitWidth="117.0" layoutX="14.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/img_2.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+
+         </children>
+      </Pane>
+      <Pane layoutX="85.0" layoutY="276.0" prefHeight="216.0" prefWidth="235.0">
+         <children>
+              <Button fx:id="generator" mnemonicParsing="false" onAction="#switchScene" prefHeight="58.0" prefWidth="235.0" stylesheets="@../css/button.css" text="Generuj" textFill="WHITE">
+                  <font>
+                      <Font name="System Bold Italic" size="14.0" />
+                  </font>
+                  <cursor>
+                      <Cursor fx:constant="HAND" />
+                  </cursor>
+            </Button>
+              <Button fx:id="options" layoutY="78.0" mnemonicParsing="false" onAction="#switchScene" prefHeight="58.0" prefWidth="235.0" stylesheets="@../css/button.css" text="Konfiguracja">
+                  <font>
+                      <Font name="System Bold Italic" size="14.0" />
+                  </font>
+                  <cursor>
+                      <Cursor fx:constant="HAND" />
+                  </cursor>
+            </Button>
+              <Button fx:id="close" layoutY="156.0" mnemonicParsing="false" onAction="#closeApplication" prefHeight="58.0" prefWidth="235.0" stylesheets="@../css/button.css" text="Wyjście">
+                  <font>
+                      <Font name="System Bold Italic" size="14.0" />
+                  </font>
+                  <cursor>
+                      <Cursor fx:constant="HAND" />
+                  </cursor>
+              </Button>
+         </children>
+      </Pane>
+    </children>
+</AnchorPane>
