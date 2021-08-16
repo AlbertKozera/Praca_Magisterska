@@ -2,15 +2,15 @@
 
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="527.0" prefWidth="405.0" style="-fx-background-color: #2B2B2B;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GeneratorController">
     <children>
-      <Pane layoutX="20.0" layoutY="20.0" prefHeight="444.0" prefWidth="365.0">
+      <Pane layoutX="20.0" layoutY="20.0" prefHeight="344.0" prefWidth="365.0">
          <children>
-              <ListView fx:id="restListView" layoutY="44.0" prefHeight="400.0" prefWidth="365.0" stylesheets="@../css/listView.css">
+              <ListView fx:id="restListView" layoutY="44.0" prefHeight="300.0" prefWidth="365.0" stylesheets="@../css/listView.css">
                   <cursor>
                       <Cursor fx:constant="HAND" />
                   </cursor>
@@ -34,5 +34,26 @@
                 </ImageView>
             </graphic>
         </Button>
+      <Pane layoutX="20.0" layoutY="367.0" prefHeight="76.0" prefWidth="365.0">
+         <children>
+              <Label alignment="CENTER" layoutY="-1.0" prefHeight="31.0" prefWidth="365.0" style="-fx-background-color: #353535;" textFill="#a9b7c6">
+                  <font>
+                      <Font size="15.0" />
+                  </font>
+               <graphic>
+                    <CheckBox fx:id="jerseyServer" mnemonicParsing="false" prefHeight="25.0" prefWidth="157.0" stylesheets="@../css/checkbox.css" text="Uruchom serwer Jersey" textFill="#a9b7c6">
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor>
+                  </CheckBox>
+               </graphic>
+              </Label>
+              <Button layoutX="276.0" layoutY="32.0" mnemonicParsing="false" onAction="#generateServices" prefHeight="43.0" prefWidth="89.0" stylesheets="@../css/button.css" text="Generuj">
+                  <cursor>
+                      <Cursor fx:constant="HAND" />
+                  </cursor>
+              </Button>
+         </children>
+      </Pane>
     </children>
 </AnchorPane>

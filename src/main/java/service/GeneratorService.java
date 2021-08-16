@@ -18,12 +18,9 @@ import java.util.Map;
 
 @Slf4j
 public class GeneratorService {
-    ServerService serverService = new ServerService();
-
     public GeneratorService() {
         var config = LoaderService.loadConfigFile();
         generate(config);
-        serverService.serverStart(config);
     }
 
     public void generate(Config config) {
