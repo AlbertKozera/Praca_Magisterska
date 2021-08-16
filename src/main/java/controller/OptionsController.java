@@ -19,12 +19,15 @@ import java.util.Objects;
 public class OptionsController {
     private final ConfigService configService = new ConfigService();
 
+
     @FXML
     private TextField url;
     @FXML
     private TextField username;
     @FXML
     private TextField password;
+    @FXML
+    private TextField catalogName;
     @FXML
     private TextField schemaName;
     @FXML
@@ -54,6 +57,7 @@ public class OptionsController {
         url.setText(config.getUrl());
         username.setText(config.getUsername());
         password.setText(config.getPassword());
+        catalogName.setText(config.getCatalogName());
         schemaName.setText(config.getSchemaName());
         jdbcDriverPath.setText(config.getJdbcDriverPath());
         driverClassName.setText(config.getDriverClassName());
@@ -67,6 +71,7 @@ public class OptionsController {
                 .url(url.getText())
                 .username(username.getText())
                 .password(password.getText())
+                .catalogName(catalogName.getText())
                 .schemaName(schemaName.getText())
                 .jdbcDriverPath(jdbcDriverPath.getText())
                 .driverClassName(driverClassName.getText())
@@ -77,7 +82,7 @@ public class OptionsController {
 
     public void choosePatchForJdbcDriver() {
         var fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Java archive files", Extension.JAR));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Java archive files", "*" + Extension.JAR));
         try {
             var file = fileChooser.showOpenDialog(null);
             if (Objects.nonNull(file)) {

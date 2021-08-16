@@ -228,7 +228,7 @@ public class ServiceImplGenerator {
         var codeBlock = CodeBlock.builder();
         var parameterIndex = 1;
         for (ColumnMetadata c : columnMetadataList) {
-            codeBlock.addStatement("preparedStatement.set$L($L, $L.get$L())", getResultSetMethodForSpecificJavaType(c.getJavaType()), parameterIndex++, getDtoObjectName(table), capitalizeFirstLetter(c.getName()));
+            codeBlock.addStatement("preparedStatement.set$L($L, $L.get$L())", getResultSetMethodForSpecificJavaType(c.getJavaType()), parameterIndex++, getDtoObjectName(table), c.getName());
         }
         codeBlock.addStatement("preparedStatement.executeUpdate()");
         return codeBlock.build();
@@ -238,7 +238,7 @@ public class ServiceImplGenerator {
         var codeBlock = CodeBlock.builder();
         var parameterIndex = 1;
         for (ColumnMetadata c : columnMetadataList) {
-            codeBlock.addStatement("preparedStatement.set$L($L, $L.get$L())", getResultSetMethodForSpecificJavaType(c.getJavaType()), parameterIndex++, getDtoObjectName(table), capitalizeFirstLetter(c.getName()));
+            codeBlock.addStatement("preparedStatement.set$L($L, $L.get$L())", getResultSetMethodForSpecificJavaType(c.getJavaType()), parameterIndex++, getDtoObjectName(table), c.getName());
         }
         codeBlock.addStatement("preparedStatement.set$L($L, id)", getResultSetMethodForSpecificJavaType(getPrimaryKeyColumn(columnMetadataList).getJavaType()), parameterIndex);
         codeBlock.addStatement("preparedStatement.executeUpdate()");

@@ -24,8 +24,7 @@ public class ServerService {
         var serverService = new ServerService();
         var uri = UriBuilder.fromUri("http://" + config.getHostname() + "/")
                 .port(Integer.parseInt(config.getPort()))
-                .path(config.getServerPath())
-                .path(config.getSchemaName()).build();
+                .path(config.getServerPath()).build();
         var myClasses = serverService.getServicesFromController();
         var resourceConfig = new ResourceConfig(myClasses);
         jerseyServer = JdkHttpServerFactory.createHttpServer(uri, resourceConfig);
@@ -58,12 +57,12 @@ public class ServerService {
         assert classLoader != null;
         String path = packageName.replace('.', '/');
         Enumeration<URL> resources = classLoader.getResources(path);
-        List<File> dirs = new ArrayList<File>();
+        List<File> dirs = new ArrayList<>();
         while (resources.hasMoreElements()) {
             URL resource = resources.nextElement();
             dirs.add(new File(resource.getFile()));
         }
-        ArrayList<Class> classes = new ArrayList<Class>();
+        ArrayList<Class> classes = new ArrayList<>();
         for (File directory : dirs) {
             classes.addAll(findClasses(directory, packageName));
         }
@@ -79,7 +78,7 @@ public class ServerService {
      * @throws ClassNotFoundException
      */
     private List<Class> findClasses(File directory, String packageName) throws ClassNotFoundException {
-        List<Class> classes = new ArrayList<Class>();
+        List<Class> classes = new ArrayList<>();
         if (!directory.exists()) {
             return classes;
         }

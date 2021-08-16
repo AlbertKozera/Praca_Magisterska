@@ -1,6 +1,7 @@
 package generator.content;
 
 import com.google.gson.Gson;
+import config.Common;
 import config.Extension;
 import config.Path;
 import dto.ColumnMetadata;
@@ -24,15 +25,15 @@ public class UriContainerGenerator {
         List<String> putServices = new ArrayList<>();
         List<String> deleteServices = new ArrayList<>();
         String uri = "http://" + config.getHostname() + ":" + config.getPort();
-        if(config.getServerPath() != null && !config.getServerPath().equals("")) {
+        if(!Common.empty(config.getServerPath())) {
             uri += "/" + config.getServerPath();
         }
         for(var entry : metadata.entrySet()) {
-            getServices.add(uri + "/" + config.getSchemaName() + "/" + entry.getKey().toLowerCase());
-            getServices.add(uri + "/" + config.getSchemaName() + "/" + entry.getKey().toLowerCase() + "/{id}");
-            postServices.add(uri + "/" + config.getSchemaName() + "/" + entry.getKey().toLowerCase());
-            putServices.add(uri + "/" + config.getSchemaName() + "/" + entry.getKey().toLowerCase() + "/{id}");
-            deleteServices.add(uri + "/" + config.getSchemaName() + "/" + entry.getKey().toLowerCase() + "/{id}");
+            getServices.add(uri + "/" + entry.getKey().toLowerCase());
+            getServices.add(uri + "/" + entry.getKey().toLowerCase() + "/{id}");
+            postServices.add(uri + "/" + entry.getKey().toLowerCase());
+            putServices.add(uri + "/" + entry.getKey().toLowerCase() + "/{id}");
+            deleteServices.add(uri + "/" + entry.getKey().toLowerCase() + "/{id}");
         }
         saveUriContainer(UriContainer.builder()
                 .getServices(getServices)

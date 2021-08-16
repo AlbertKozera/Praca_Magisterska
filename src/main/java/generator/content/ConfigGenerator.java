@@ -14,6 +14,8 @@ import java.util.Arrays;
 import java.util.Properties;
 import java.util.logging.Logger;
 
+import static config.Common.empty;
+
 @Slf4j
 public class ConfigGenerator {
     public ConfigGenerator(Config config) {
@@ -26,16 +28,21 @@ public class ConfigGenerator {
     }
 
     private MethodSpec generateMethodConnection(Config config) {
-        return MethodSpec.methodBuilder("connection")
+        var method = MethodSpec.methodBuilder("connection")
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                 .returns(Connection.class)
                 .beginControlFlow("try")
                 .addStatement("var urlClassLoader = new $T(new $T { new $T($S) })", URLClassLoader.class, URL[].class, URL.class, "jar:file:/" + config.getJdbcDriverPath() + "!/")
                 .addStatement("$T d = ($T)$T.forName($S, true, urlClassLoader).getDeclaredConstructor().newInstance()", Driver.class, Driver.class, Class.class, config.getDriverClassName())
                 .addStatement("$T.registerDriver(new DriverShim(d))", DriverManager.class)
-                .addStatement("var connection = $T.getConnection($S, $S, $S)", DriverManager.class, config.getUrl(), config.getUsername(), config.getPassword())
-                .addStatement("connection.setSchema($S)", config.getSchemaName())
-                .addStatement("return connection")
+                .addStatement("var connection = $T.getConnection($S, $S, $S)", DriverManager.class, config.getUrl(), config.getUsername(), config.getPassword());
+        if(!empty(config.getSchemaName())) {
+            method.addStatement("connection.setSchema($S)", config.getSchemaName());
+        }
+        if(!empty(config.getCatalogName())) {
+            method.addStatement("connection.setCatalog($S)", config.getCatalogName());
+        }
+        return method.addStatement("return connection")
                 .nextControlFlow("catch ($T e)", Exception.class)
                 .addStatement("log.error(e.getMessage())")
                 .addStatement("throw new $T()", RuntimeException.class)
