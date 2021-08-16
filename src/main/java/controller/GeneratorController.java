@@ -3,9 +3,12 @@ package controller;
 import app.RestWebServiceGenerator;
 import config.Extension;
 import controller.customization.ListViewCell;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import service.GeneratorService;
@@ -21,13 +24,16 @@ public class GeneratorController {
     private ChoiceBox<String> httpMethodChooser;
     @FXML
     private ListView<String> restListView;
+    @FXML
+    private CheckBox jerseyServer;
+    ServerService serverService = new ServerService();
 
     @FXML
     void initialize() {
         fillHttpMethodChooser();
         setListenerForHttpMethodChooser();
         setCellFactoryForRestListView();
-        new GeneratorService();
+        setListenerForJerseyServer();
     }
 
     private void fillHttpMethodChooser() {
@@ -40,7 +46,7 @@ public class GeneratorController {
                 .addListener((observable, oldValue, newValue) -> {
                     var uriContainer = LoaderService.loadUriContainerFile();
                     cleanRestListView(restListView);
-                    switch(newValue){
+                    switch (newValue) {
                         case "GET":
                             restListView.getItems().addAll(uriContainer.getGetServices());
                             break;
@@ -56,6 +62,17 @@ public class GeneratorController {
                         default:
                             cleanRestListView(restListView);
                     }
+                });
+    }
+
+    private void setListenerForJerseyServer() {
+        jerseyServer.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                var config = LoaderService.loadConfigFile();
+                serverService.serverStart(config);
+            } else {
+                ServerService.stopServer();
+            }
         });
     }
 
@@ -68,9 +85,11 @@ public class GeneratorController {
     }
 
     public void switchScene(ActionEvent actionEvent) throws IOException {
-        ServerService.stopServer();
         var button = (Button) actionEvent.getSource();
-        RestWebServiceGenerator.switchScene( button.getId() + Extension.FXML);
+        RestWebServiceGenerator.switchScene(button.getId() + Extension.FXML);
     }
 
+    public void generateServices() {
+        new GeneratorService();
+    }
 }

@@ -69,7 +69,7 @@
       </Pane>
       <Pane layoutX="85.0" layoutY="276.0" prefHeight="216.0" prefWidth="235.0">
          <children>
-              <Button fx:id="generator" mnemonicParsing="false" onAction="#switchScene" prefHeight="58.0" prefWidth="235.0" stylesheets="@../css/button.css" text="Generuj" textFill="WHITE">
+              <Button fx:id="generator" mnemonicParsing="false" onAction="#switchScene" prefHeight="58.0" prefWidth="235.0" stylesheets="@../css/button.css" text="Generator" textFill="WHITE">
                   <font>
                       <Font name="System Bold Italic" size="14.0" />
                   </font>
