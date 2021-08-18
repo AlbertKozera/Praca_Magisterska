@@ -22,23 +22,13 @@ public class MetadataService {
         String previousTableName = null;
         String catalog = null;
         String schemaPattern = null;
-
         var databaseMetaData = connection.getMetaData();
-/*        ResultSet resultSet = databaseMetaData.getTables(null, config.getSchemaName() , null, new String[]{"TABLE"});
-        System.out.println("Printing TABLE_TYPE \"TABLE\" ");
-        System.out.println("----------------------------------");
-        while(resultSet.next())
-        {
-            //Print
-            System.out.println(resultSet.getString("TABLE_NAME"));
-        }*/
         if(!empty(config.getSchemaName())) {
             schemaPattern = config.getSchemaName();
         }
         if(!empty(config.getCatalogName())) {
             catalog = config.getCatalogName();
         }
-
         ResultSet rs = databaseMetaData.getColumns(catalog, schemaPattern, null, null);
         while (rs.next()) {
             var tableName = getProperty(rs, "TABLE_NAME");

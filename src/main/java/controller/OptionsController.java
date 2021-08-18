@@ -89,7 +89,7 @@ public class OptionsController {
                 jdbcDriverPath.setText(file.getAbsolutePath());
             }
         } catch (Exception e) {
-            log.info(e.getMessage());
+            log.error(e.getMessage());
         }
     }
 

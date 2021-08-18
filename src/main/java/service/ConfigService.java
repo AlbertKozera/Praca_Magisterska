@@ -28,7 +28,7 @@ public class ConfigService {
         try (var fileWriter = new FileWriter(Path.PROJECT_RESOURCES + "config" + Extension.JSON)) {
             fileWriter.write(new Gson().toJson(config));
         } catch (IOException e) {
-            log.info(e.getMessage());
+            log.error(e.getMessage());
         }
     }
 
