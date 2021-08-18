@@ -35,7 +35,11 @@ public class ServerService {
     }
 
     public static void stopServer() {
-        jerseyServer.stop(0);
+        try{
+            jerseyServer.stop(0);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
     }
 
     private Class[] getServicesFromController() {
