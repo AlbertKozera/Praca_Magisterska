@@ -16,4 +16,5 @@ public class Config {
     String hostname;
     String port;
     String serverPath;
+    boolean isServerUp;
 }

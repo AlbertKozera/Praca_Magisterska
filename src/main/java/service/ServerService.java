@@ -10,7 +10,9 @@ import org.glassfish.jersey.server.ResourceConfig;
 import javax.ws.rs.core.UriBuilder;
 import java.io.File;
 import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -32,6 +34,11 @@ public class ServerService {
         } catch (Exception e) {
             log.error(e.getMessage());
         }
+
+
+
+
+
     }
 
     public static void stopServer() {
