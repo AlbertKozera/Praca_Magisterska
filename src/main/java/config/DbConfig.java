@@ -14,8 +14,8 @@ public class DbConfig {
     public static Connection connection(String jdbcDriverPath, String driverClassName, String url, String username, String password) {
         try {
             var urlClassLoader = new URLClassLoader(new URL[] { new URL("jar:file:/" + jdbcDriverPath + "!/") });
-            Driver d = (Driver)Class.forName(driverClassName, true, urlClassLoader).getDeclaredConstructor().newInstance();
-            DriverManager.registerDriver(new DriverShim(d));
+            var driver = (Driver)Class.forName(driverClassName, true, urlClassLoader).getDeclaredConstructor().newInstance();
+            DriverManager.registerDriver(new DriverShim(driver));
             return DriverManager.getConnection(url, username, password);
         } catch (Exception e) {
             log.error(e.getMessage());

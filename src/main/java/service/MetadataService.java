@@ -36,10 +36,14 @@ public class MetadataService {
                 metadata.put(previousTableName, new LinkedList<>(columnMetadataList));
                 columnMetadataList.clear();
             }
-            columnMetadataList.add(getColumnMetadata(rs, getPrimaryKeyColumnForTable(databaseMetaData, catalog, schemaPattern, tableName)));
+            var primaryKey = getPrimaryKeyColumnForTable(databaseMetaData, catalog, schemaPattern, tableName);
+            if(primaryKey != null) {
+                columnMetadataList.add(getColumnMetadata(rs, primaryKey));
+            }
             previousTableName = getProperty(rs, "TABLE_NAME");
         }
         metadata.put(previousTableName, new LinkedList<>(columnMetadataList));
+        metadata.entrySet().removeIf(element -> element.getValue().isEmpty());
         return metadata;
     }
 
@@ -57,8 +61,20 @@ public class MetadataService {
 
     private String getPrimaryKeyColumnForTable(DatabaseMetaData databaseMetaData, String catalog, String schemaPattern, String tableName) throws SQLException {
         ResultSet rs = databaseMetaData.getPrimaryKeys(catalog, schemaPattern, tableName);
-        rs.next();
-        return getProperty(rs, "COLUMN_NAME").toUpperCase();
+        String primaryKey;
+        if(!rs.next()) {
+            return null;
+        }
+        else {
+            primaryKey = getProperty(rs, "COLUMN_NAME").toUpperCase();
+        }
+
+        if(rs.next()) {
+            return null;
+        }
+        else {
+            return primaryKey;
+        }
     }
 
     private String getProperty(ResultSet rs, String property) {

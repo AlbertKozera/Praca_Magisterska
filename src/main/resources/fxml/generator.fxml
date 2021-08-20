@@ -36,7 +36,7 @@
         </Button>
       <Pane layoutX="20.0" layoutY="367.0" prefHeight="76.0" prefWidth="365.0">
          <children>
-              <Label alignment="CENTER" layoutY="-1.0" prefHeight="31.0" prefWidth="365.0" style="-fx-background-color: #353535;" textFill="#a9b7c6">
+              <Label alignment="CENTER" prefHeight="31.0" prefWidth="365.0" style="-fx-background-color: #353535;" textFill="#a9b7c6">
                   <font>
                       <Font size="15.0" />
                   </font>
@@ -48,7 +48,7 @@
                   </CheckBox>
                </graphic>
               </Label>
-              <Button layoutX="276.0" layoutY="32.0" mnemonicParsing="false" onAction="#generateServices" prefHeight="43.0" prefWidth="89.0" stylesheets="@../css/button.css" text="Generuj">
+              <Button layoutX="276.0" layoutY="34.0" mnemonicParsing="false" onAction="#generateServices" prefHeight="43.0" prefWidth="89.0" stylesheets="@../css/button.css" text="Generuj">
                   <cursor>
                       <Cursor fx:constant="HAND" />
                   </cursor>
